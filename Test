@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>XSS Testi</title>
+</head>
+<body>
+    <h1>Arama Formu</h1>
+
+    <!-- Burada formu ekliyoruz -->
+    <form action="index.html" method="GET">
+        <label for="q">Arama Yap:</label>
+        <input type="text" id="q" name="q">
+        <button type="submit">Gönder</button>
+    </form>
+
+    <p>Arama Sonucu:</p>
+    <p>
+        <?php
+        if (isset($_GET['q'])) {
+            echo $_GET['q']; // Kullanıcıdan gelen input, sayfada görünür
+        }
+        ?>
+    </p>
+
+    <script>
+        // Sayfa yüklendiğinde otomatik çalışacak kod
+        alert('XSS Kodunuz Çalıştı!');
+    </script>
+</body>
+</html>
